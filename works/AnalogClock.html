@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AnalogClock</title>
+  <style>
+     body {
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      height: 100vh;
+      align-items: center;
+      background: url("watch.jpg");
+      background-repeat: no-repeat;
+	    background-attachment: fixed;
+	    background-position: 250px center;
+	    background-size: 70%;
+
+    }
+
+    .circle {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      margin: 20px;
+      position: relative;
+    }
+
+    .jhur1 {
+      width: 10px;
+      height: 25%;
+      background: rgb(233,189,176);
+      position: absolute;
+      left: 50%;
+      top: 30%;
+      margin-left: -5px;
+    }
+
+    .jmin1 {
+      width: 10px;
+      height: 40%;
+      background: rgb(233,189,176);
+      position: absolute;
+      left: 50%;
+      top: 15%;
+      margin-left: -5px;
+    }
+
+    .jsec1 {
+      width: 4px;
+      height: 50%;
+      background: rgb(233,189,176);
+      position: absolute;
+      left: 50%;
+      top: 5%;
+      margin-left: -2px;
+
+    }
+
+    .zmin1 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      animation: j_min calc(60s*60) infinite linear;
+    }
+
+    .zhur1 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      animation: j_hur calc(12s*60*60) infinite linear;
+    }
+
+    .zsec1 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      animation: j_sec calc(6s*10) infinite linear;
+    }
+
+    
+  </style>
+  <script>
+    let time = new Date();
+    let pos_s = time.getSeconds();
+    let pos_m = time.getMinutes();
+    let pos_h = time.getHours();
+    let x = pos_s * 6;
+    let y = (pos_m * 60 + pos_s) * 0.1; 
+    let z = (pos_h * 60 + pos_m) * 0.5; 
+
+    document.write(`
+      <style>
+        @keyframes j_min {
+          from {
+            transform: rotate(${y}deg);
+          }
+          to {
+            transform: rotate(${y + 360}deg);
+          }
+        }
+        @keyframes j_hur {
+          from {
+            transform: rotate(${z}deg);
+          }
+          to {
+            transform: rotate(${z + 360}deg);
+            /*270+360*/
+          }
+        }
+        @keyframes j_sec {
+          from {
+            transform: rotate(${x}deg);
+          }
+
+          to {
+            transform: rotate(${x + 360}deg);
+            /*180+360*/
+          }
+        }
+      </style>
+    `);
+
+
+</script>
+</head>
+<body>
+  <body>
+    <div class="circle">
+      <div class="zmin1">
+        <div class="jmin1"></div>
+      </div>
+      <div class="zhur1">
+        <div class="jhur1"></div>
+      </div>
+      <div class="zsec1">
+        <div class="jsec1"></div>
+      </div>
+    </div>
+</body>
+</html>

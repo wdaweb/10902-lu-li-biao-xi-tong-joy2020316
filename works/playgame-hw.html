@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>playgame</title>
+    <style>
+      body{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+	      url(ghost.jpg);
+	      background-size: cover;
+	      background-attachment: fixed;
+	      background-repeat: no-repeat;
+	      background-position: center center;
+	      height: 90%;
+      }
+    </style>
+</head>
+<body>
+    <script>
+        function gameplay() {
+    let name;
+    if ((name = prompt("歡迎光臨「酆都遊樂園」～這是 Yes 0r No 的鬼遊戲，請輸入你的代號", ""))) {
+      alert(name + "是你的代稱，祝玩得愉快∩∩～");
+    } else {
+      name = "花花";
+      alert("花花 – 這是擲筊得來的 ╴有保庇呦～，還沒取名的你可以拿去用。");
+    }
+    if (confirm(`阿飄${name}～這是一條邁向「鬼王」路的過程，一旦選錯就出局了，你準備好了嗎?`)) {
+      alert("膽子夠肥∩∩～，欣賞你啦∩∩～，Go～Go～Go！");
+      if (
+        qus(
+          "岐路1；你又渴又餓，前方有棵蘋果樹你會吃果嗎……?",
+          "你不是亞當也不是白雪公主，放心吃吧～請前往下一關。",
+          "你想當牛頓？？別吧……賈伯斯都咬了一口～你需要補充血條 — 請退出本遊戲。",
+          true
+        )
+      )
+        return;
+      if (
+        qus(
+          "岐路2；有隻粉紅豬化作美女/男神在河邊洗澡，你會偷走她/他的衣服(皮草！！)嗎?",
+          "動物保護團體說「不可以欺負小動物」 — 請前往下一關。",
+          `${name}……你被小動物欺負了……戰鬥力渣破表 — 請退出本遊戲。`,
+          false
+        )
+      )
+        return;
+      if (
+        qus(
+          "岐路3；津口，你乘筏過江，擺渡老人訴說著他幼失怙恃中年喪妻晚歲無依的景況，你會多給渡資嗎?",
+          "世上可憐人多了去，哪有什麼好同情的 —— 愛的對手從來不是恨，而是冷漠。舟筏翻覆，你落河，原來鬼門入口在河下 — 請前往下一關。",
+          `${name}你惡性不足，鬼門關閉，安全上岸 — 請退出本遊戲。`,
+          false
+        )
+      )
+        return;
+      if (
+        qus(
+          "歧路4；你被漩渦捲進一個幽黯的洞窟，眼前一點燭光明滅，定睛細看紅燭竟在一面鏡子之內，鏡子印射你的容貌，你觸碰鏡子，瞬間你的形象化做白骨(X光機！！)，你驚得後退，你的白骨形象扯斷自己的肋骨穿過鏡子遞給你，你會接嗎?",
+          "肋骨上刻有通關密碼～你可以繼續前進下一關喔～",
+          "沒有取得通關金鑰 — 請退出本遊戲。",
+          true
+        )
+      )
+        return;
+      if (
+        qus(
+          "歧路5；帶著肋骨你來到ㄧ扇石門前，石門前有個圓環，圓環上有個插孔，你將肋骨插入孔中，圓環解鎖，你轉動圓環，這時你會選擇轉向石門右邊的希臘石膏雅典娜？還是左邊的石製沙漏？選擇轉向石門右邊的希臘石膏雅典娜的人，請按確定。",
+          `遊至於此，${name}你兼具智慧與勇氣～∩∩`,
+          "本遊戲無法定義視同無效作答。",
+          true
+        )
+      )
+        return;
+      alert(`恭喜${name}成功邁向「鬼王」路～∩∩`);
+    } else {
+      alert("歡迎再次光臨「酆都遊樂園」～～∩∩");
+    }
+  }
+  function qus(msg, good, bad, be) {
+    if (confirm(msg) == be) alert(good);
+    else {
+      alert(bad + "\n" + "GAME OVER");
+      return true;
+    }
+  }
+  gameplay();
+  
+    </script>
+</body>
+</html>

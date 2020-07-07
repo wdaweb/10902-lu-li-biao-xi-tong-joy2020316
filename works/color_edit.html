@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>color_edit</title>
+  <style>
+    div#colorbox {
+      width: 500px;
+      height: 300px;
+      border: #999 1px solid;
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 40px;
+      line-height: 300px;
+      text-transform: uppercase;
+      color: white;
+      border-radius: 10%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="colorbox"></div>
+  <div>
+    <input type="button" value="R" onclick="ask('r')" style="color:white;background-color: red;">
+    <input type="range" min="0" max="255" id="rr" onchange="colorbar('r',this)">
+    <br>
+    <input type="button" value="G" onclick="ask('g')" style="color:white;background-color: green;">
+    <input type="range" min="0" max="255" id="gg" onchange="colorbar('g',this)">
+    <br>
+    <input type="button" value="B" onclick="ask('b')" style="color:white;background-color:blue;">
+    <input type="range" min="0" max="255" id="bb" onchange="colorbar('b',this)">
+    <br><br>
+    <input type="button" value="+" onmousedown="cont('add')" onmouseup="clearInterval(run)"
+      onmouseout="clearInterval(run)" style="color:#333;background-color: lightgoldenrodyellow;">
+    <input type="button" value="-" onmousedown="cont('cut')" onmouseup="clearInterval(run)"
+      onmouseout="clearInterval(run)" style="color:#333;background-color: lightgoldenrodyellow;">
+    <input type="button" value="?" onmousedown="cont('rand')" onmouseup="clearInterval(run)"
+      onmouseout="clearInterval(run)" style="color:#333;background-color: lightgoldenrodyellow;">
+  </div>
+</body>
+
+</html>
+<script>
+
+  function print_rgb() { 
+    document.getElementById("colorbox").style.backgroundColor = "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")";
+    document.getElementById("colorbox").style.color = "rgb(" + (255 - rgb.r) + "," + (255 - rgb.g) + "," + (255 - rgb.b) + ")";
+    document.getElementById("rr").value = rgb.r;
+    document.getElementById("gg").value = rgb.g;
+    document.getElementById("bb").value = rgb.b;
+    document.getElementById("colorbox").innerHTML = "#" + add_digit(rgb.r) + add_digit(rgb.g) + add_digit(rgb.b);
+  }
+
+  function ask(clr) {   
+    do {
+      newclr = prompt('請輸入 0~255 數字', rgb[clr]);
+    } while (!(0 <= newclr && newclr <= 255));
+    rgb[clr] = (newclr == null) ? rgb[clr] : Number(newclr);
+    print_rgb();
+  }
+
+  function colorbar(clr, obj) {
+    rgb[clr] = Number(obj.value);
+    print_rgb();
+  }
+
+  function add_digit(str) { 
+    str = str.toString(16);
+    return str.length >= 2 ? str : '0' + str;
+  }
+
+
+  var rgb = { r: 0, g: 0, b: 0 }, run; 
+  rgb.r = Math.floor((Math.random() * 256));
+  rgb.g = Math.floor((Math.random() * 256));
+  rgb.b = Math.floor((Math.random() * 256));
+  print_rgb();
+
+   
+  function cont(select) {   
+    run = setInterval(function () {
+      switch (select) {
+        case 'add':
+          if (rgb.r < 255) rgb.r++;
+          if (rgb.g < 255) rgb.g++;
+          if (rgb.b < 255) rgb.b++;
+          break;
+        case 'cut':
+          if (rgb.r > 0) rgb.r--;
+          if (rgb.g > 0) rgb.g--;
+          if (rgb.b > 0) rgb.b--;
+          break;
+        case 'rand':
+          rgb.r = Math.floor((Math.random() * 256));
+          rgb.g = Math.floor((Math.random() * 256));
+          rgb.b = Math.floor((Math.random() * 256));
+          break;
+      }
+      print_rgb();
+    }, 30);
+  }
+
+</script>
