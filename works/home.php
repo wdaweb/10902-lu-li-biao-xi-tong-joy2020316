@@ -16,6 +16,8 @@
     <div class="container">
     <h1 class="text-center text-primary mt-5">管理者操作後台</h1>
     <input type="button" value="登出"  class="btn btn-success" onclick="location.href='../index.php'">
+    <input type="button" value="頁尾版權修改區"  class="btn btn-success" onclick="location.href='bottom.php'">
+
     </div>
     
 

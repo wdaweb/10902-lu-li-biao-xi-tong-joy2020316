@@ -1,4 +1,7 @@
-`<!DOCTYPE html>
+<?php include_once "works/base.php";?>
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -89,7 +92,10 @@
       </div> 
     </div>
     <footer class="text-center bg-light text-dark py2">
-      Copyrights © 2020 All Rights Reserver By 1090222
+    <?php
+                $bt=find('bottom',1);
+                echo $bt['bottom'];
+            ?>
     </footer> 
    <script src="plugins/jquery-3.4.1.js"></script>
    <script src="plugins/bootstrap.js"></script> 
